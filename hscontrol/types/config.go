@@ -58,6 +58,7 @@ type Config struct {
 	GRPCAddr                       string
 	GRPCAllowInsecure              bool
 	EphemeralNodeInactivityTimeout time.Duration
+	ExpireNodeOnDisconnect         bool
 	PrefixV4                       *netip.Prefix
 	PrefixV6                       *netip.Prefix
 	IPAllocation                   IPAllocationStrategy
@@ -900,6 +901,8 @@ func LoadServerConfig() (*Config, error) {
 		EphemeralNodeInactivityTimeout: viper.GetDuration(
 			"ephemeral_node_inactivity_timeout",
 		),
+
+		ExpireNodeOnDisconnect: viper.GetBool("expire_node_on_disconnect"),
 
 		Database: databaseConfig(),
 

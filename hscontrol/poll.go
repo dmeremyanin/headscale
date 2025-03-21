@@ -404,6 +404,11 @@ func (h *Headscale) updateNodeOnlineStatus(online bool, node *types.Node) {
 	if !online {
 		now := time.Now()
 
+		// Expire the node on disconnect, forcing it to reauthenticate on the next connection attempt.
+		if h.cfg.ExpireNodeOnDisconnect && node.Expiry != nil {
+			node.Expiry = &now
+		}
+
 		// lastSeen is only relevant if the node is disconnected.
 		node.LastSeen = &now
 		change.LastSeen = &now

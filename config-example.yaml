@@ -133,6 +133,10 @@ disable_check_updates: false
 # Time before an inactive ephemeral node is deleted?
 ephemeral_node_inactivity_timeout: 30m
 
+# Expire node upon disconnection, requiring user to re-authenticate.
+# This is useful if you want to require authentication via an OIDC provider for each connection attempt.
+expire_node_on_disconnect: true
+
 database:
   # Database type. Available options: sqlite, postgres
   # Please note that using Postgres is highly discouraged as it is only supported for legacy reasons.
